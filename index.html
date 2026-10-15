@@ -42,6 +42,18 @@
     For more details:
     * https://docs.flutter.dev/platform-integration/web/initialization
   -->
+  <script>
+    // Instalação como app (PWA) no Android: o Chrome avisa que o site pode ser
+    // instalado; guardamos o aviso para o botão "Baixar app" abrir na hora certa.
+    window.madamesInstallPrompt = null;
+    window.addEventListener('beforeinstallprompt', function (event) {
+      event.preventDefault();
+      window.madamesInstallPrompt = event;
+    });
+    window.addEventListener('appinstalled', function () {
+      window.madamesInstallPrompt = null;
+    });
+  </script>
   <script src="flutter_bootstrap.js" async></script>
 </body>
 </html>
